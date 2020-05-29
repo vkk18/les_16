@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <string>
 #include <Windows.h>
 #include <fstream>
@@ -36,8 +36,8 @@ const string wordlist[NUM] = { "apiary", "beetle", "cereal",
 private:
 	string str;
 public:
-	Report(const string s) : str(s) { cout << "Объект создан!\n"; }
-	~Report() { cout << "Объект удален!\n"; }
+	Report(const string s) : str(s) { cout << "РћР±СЉРµРєС‚ СЃРѕР·РґР°РЅ!\n"; }
+	~Report() { cout << "РћР±СЉРµРєС‚ СѓРґР°Р»РµРЅ!\n"; }
 	void comment() const { cout << str << endl; }
 };*/
 
@@ -78,7 +78,7 @@ public:
 };
 void outint(int n) { cout << n << " "; }*/
 
-//16.16 - fundap.cpp — использование адаптеров функций
+//16.16 - fundap.cpp вЂ” РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Р°РґР°РїС‚РµСЂРѕРІ С„СѓРЅРєС†РёР№
 /*void Show(double v)
 {
 	cout.width(6);
@@ -86,14 +86,14 @@ void outint(int n) { cout << n << " "; }*/
 }
 const int LIM = 6;*/
 
-//16.18 - strgstl.cpp -- применение STL к строке
+//16.18 - strgstl.cpp -- РїСЂРёРјРµРЅРµРЅРёРµ STL Рє СЃС‚СЂРѕРєРµ
 /*void Show(int v)
 {
 	cout << v << ' ';
 }
 const int LIM = 10;*/
 
-//16.19 - usealgo.срр -- использование нескольких элементов STL
+//16.19 - usealgo.СЃСЂСЂ -- РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ STL
 char toLower(char ch) { return std::tolower(ch); }
 string & ToLower(string & s)
 {
@@ -118,18 +118,18 @@ int main()
 	string three(one);
 	cout << three << endl;	//string(const string & str)
 	
-	one += " Oops!";			// перегруженная +=
+	one += " Oops!";			// РїРµСЂРµРіСЂСѓР¶РµРЅРЅР°СЏ +=
 	cout << one << endl;
 
 	two = "Sorry! That was ";
 	three[0] = 'P';
 	
 	string four;			//string()
-	four = two + three;		// перегруженная +, =
+	four = two + three;		// РїРµСЂРµРіСЂСѓР¶РµРЅРЅР°СЏ +, =
 	cout << four << endl;
 
 	char alls[] = "All's well that ends well";
-	string five(alls, 20);	//string(const char * s, size type л)
+	string five(alls, 20);	//string(const char * s, size type Р»)
 	cout << five << "!\n";
 
 	string six(alls + 6, alls + 10);  //template<class Iter> string(Iter begin, Iter end)
@@ -146,13 +146,13 @@ int main()
 	fin.open("tobuy.txt");
 	if (fin.is_open() == false)
 	{
-		std::cerr << "Не удается открыть файл\n";
+		std::cerr << "РќРµ СѓРґР°РµС‚СЃСЏ РѕС‚РєСЂС‹С‚СЊ С„Р°Р№Р»\n";
 		exit(EXIT_FAILURE);
 	}
 	string item;
 	int count = 0;
 	std::getline(fin, item, ':');
-	while (fin) // до тех пор, пока нет ошибок ввода
+	while (fin) // РґРѕ С‚РµС… РїРѕСЂ, РїРѕРєР° РЅРµС‚ РѕС€РёР±РѕРє РІРІРѕРґР°
 	{
 		count++;
 		cout << count << ": " << item << endl;
@@ -163,40 +163,40 @@ int main()
 	//16.3
 	/*std::srand(std::time(NULL));
 	char play;
-	cout << "Хотите поиграть в виселицу? <y/n> ";
+	cout << "РҐРѕС‚РёС‚Рµ РїРѕРёРіСЂР°С‚СЊ РІ РІРёСЃРµР»РёС†Сѓ? <y/n> ";
 	cin >> play;
 	play = tolower(play);
 	while (play == 'y')
 	{
 		string target = wordlist[std::rand() % NUM];
 		int lenght = target.length();
-		string attempt(lenght, '-'); // угаданное
-		string badchars; //неверные буквы
+		string attempt(lenght, '-'); // СѓРіР°РґР°РЅРЅРѕРµ
+		string badchars; //РЅРµРІРµСЂРЅС‹Рµ Р±СѓРєРІС‹
 		int guesses = lenght;
-		cout << "Угадайте слово, в нем " << lenght << " букв\nугадываете одну букву за ход, у вас " << guesses << " попыток\n";
-		cout << "Ваше слово: " << attempt << endl;
+		cout << "РЈРіР°РґР°Р№С‚Рµ СЃР»РѕРІРѕ, РІ РЅРµРј " << lenght << " Р±СѓРєРІ\nСѓРіР°РґС‹РІР°РµС‚Рµ РѕРґРЅСѓ Р±СѓРєРІСѓ Р·Р° С…РѕРґ, Сѓ РІР°СЃ " << guesses << " РїРѕРїС‹С‚РѕРє\n";
+		cout << "Р’Р°С€Рµ СЃР»РѕРІРѕ: " << attempt << endl;
 		while (attempt != target && guesses > 0)
 		{
 			char letter;
-			cout << "Введите букву: ";
+			cout << "Р’РІРµРґРёС‚Рµ Р±СѓРєРІСѓ: ";
 			cin >> letter;
 			if (badchars.find(letter) != string::npos || attempt.find(letter) != string::npos)
 			{
-				cout << "Вы уже угадывали эту букву! Попробуйте еще раз\n";
+				cout << "Р’С‹ СѓР¶Рµ СѓРіР°РґС‹РІР°Р»Рё СЌС‚Сѓ Р±СѓРєРІСѓ! РџРѕРїСЂРѕР±СѓР№С‚Рµ РµС‰Рµ СЂР°Р·\n";
 				continue;
 			}
 			int loc = target.find(letter);
 			if (loc == string::npos)
 			{
-				cout << "Неверная буква!\n";
+				cout << "РќРµРІРµСЂРЅР°СЏ Р±СѓРєРІР°!\n";
 				guesses--;
 				badchars += letter;
 			}
 			else
 			{
-				cout << "Вы угадали!\n";
+				cout << "Р’С‹ СѓРіР°РґР°Р»Рё!\n";
 				attempt[loc] = letter;
-				// Проверить, не появляется ли буква еще раз
+				// РџСЂРѕРІРµСЂРёС‚СЊ, РЅРµ РїРѕСЏРІР»СЏРµС‚СЃСЏ Р»Рё Р±СѓРєРІР° РµС‰Рµ СЂР°Р·
 				loc = target.find(letter, loc + 1);
 				while (loc != string::npos)
 				{
@@ -204,15 +204,15 @@ int main()
 					loc = target.find(letter, loc + 1);
 				}
 			}
-			cout << "Ваше слово: " << attempt << endl;
+			cout << "Р’Р°С€Рµ СЃР»РѕРІРѕ: " << attempt << endl;
 			if (attempt != target && badchars.length() > 0)
-				cout << "Неверные буквы: " << badchars << endl << guesses << " попыток осталось!\n";
+				cout << "РќРµРІРµСЂРЅС‹Рµ Р±СѓРєРІС‹: " << badchars << endl << guesses << " РїРѕРїС‹С‚РѕРє РѕСЃС‚Р°Р»РѕСЃСЊ!\n";
 		}
 		if (guesses > 0)
-			cout << "Вы угадали слово!\n";
+			cout << "Р’С‹ СѓРіР°РґР°Р»Рё СЃР»РѕРІРѕ!\n";
 		else
-			cout << "Вы проиграли! Загаданное слово: " << target << endl;
-		cout << "Хотите сыграть еще? <y/n> ";
+			cout << "Р’С‹ РїСЂРѕРёРіСЂР°Р»Рё! Р—Р°РіР°РґР°РЅРЅРѕРµ СЃР»РѕРІРѕ: " << target << endl;
+		cout << "РҐРѕС‚РёС‚Рµ СЃС‹РіСЂР°С‚СЊ РµС‰Рµ? <y/n> ";
 		cin >> play;
 		play = tolower(play);
 	}*/
@@ -221,28 +221,28 @@ int main()
 	/*string empty;
 	string __small = "bit";
 	string larger = "Elephants are a girl's best friend";
-	cout << "Размеры строк: \n";
+	cout << "Р Р°Р·РјРµСЂС‹ СЃС‚СЂРѕРє: \n";
 	cout << "\tempty: " << empty.size() << endl;
 	cout << "\t__small: " << __small.size() << endl;
 	cout << "\tlarger: " << larger.size() << endl;
-	cout << "Размеры текущего блока строк: \n";
+	cout << "Р Р°Р·РјРµСЂС‹ С‚РµРєСѓС‰РµРіРѕ Р±Р»РѕРєР° СЃС‚СЂРѕРє: \n";
 	cout << "\tempty: " << empty.capacity() << endl;
 	cout << "\t__small: " << __small.capacity() << endl;
 	cout << "\tlarger: " << larger.capacity() << endl;
 	empty.reserve(50);
-	cout << "Размер после empty.reserve(50): " << empty.capacity() << endl;*/
+	cout << "Р Р°Р·РјРµСЂ РїРѕСЃР»Рµ empty.reserve(50): " << empty.capacity() << endl;*/
 
 	//16.5
 	/*{
-		std::auto_ptr<Report> ps(new Report("используется auto_ptr"));
+		std::auto_ptr<Report> ps(new Report("РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ auto_ptr"));
 		ps->comment();
 	}
 	{
-		std::shared_ptr<Report> ps(new Report("используется shared_ptr"));
+		std::shared_ptr<Report> ps(new Report("РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ shared_ptr"));
 		ps->comment();
 	}
 	{
-		std::unique_ptr<Report> ps(new Report("используется unique_ptr"));
+		std::unique_ptr<Report> ps(new Report("РёСЃРїРѕР»СЊР·СѓРµС‚СЃСЏ unique_ptr"));
 		ps->comment();
 	}*/
 
@@ -285,18 +285,18 @@ int main()
 	//16.7
 	/*vector<int> ratings(NUM);
 	vector<string> titles(NUM);
-	cout << "Введите книги и их рейтинг:\n";
+	cout << "Р’РІРµРґРёС‚Рµ РєРЅРёРіРё Рё РёС… СЂРµР№С‚РёРЅРі:\n";
 	int i;
 	for (i = 0; i < NUM; i++)
 	{
-		cout << "Введите название книги #" << i + 1 << ": ";
+		cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєРЅРёРіРё #" << i + 1 << ": ";
 		std::getline(cin, titles[i]);
-		cout << "Введите ее рейтинг: ";
+		cout << "Р’РІРµРґРёС‚Рµ РµРµ СЂРµР№С‚РёРЅРі: ";
 		cin >> ratings[i];
 		cin.get();
 	}
 
-	cout << "\nРейтинг\tКнига:\n";
+	cout << "\nР РµР№С‚РёРЅРі\tРљРЅРёРіР°:\n";
 	for (i = 0; i < NUM; i++)
 		cout << ratings[i] << "\t" << titles[i] << endl;*/
 
@@ -308,36 +308,36 @@ int main()
 	int num = books.size();
 	if (num > 0)
 	{
-		cout << "Вы ввели:\n";
-		cout << "\nРейтинг\tКнига:\n";
+		cout << "Р’С‹ РІРІРµР»Рё:\n";
+		cout << "\nР РµР№С‚РёРЅРі\tРљРЅРёРіР°:\n";
 		for (int i = 0; i < num; i++)
 			ShowReview(books[i]);
-		cout << "Повтор:\n";
-		cout << "\nРейтинг\tКнига:\n";
+		cout << "РџРѕРІС‚РѕСЂ:\n";
+		cout << "\nР РµР№С‚РёРЅРі\tРљРЅРёРіР°:\n";
 		vector<Review>::iterator pr;
 		for (pr = books.begin(); pr != books.end(); pr++)
 			ShowReview(*pr);
-		vector<Review> oldlist(books); // использование конструктора копирования
+		vector<Review> oldlist(books); // РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР° РєРѕРїРёСЂРѕРІР°РЅРёСЏ
 		if (num > 3)
 		{
-			// Удаление двух элементов
+			// РЈРґР°Р»РµРЅРёРµ РґРІСѓС… СЌР»РµРјРµРЅС‚РѕРІ
 			books.erase(books.begin() + 1, books.begin() + 3);
-			cout << "После удаления(erase):\n";
+			cout << "РџРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ(erase):\n";
 			for (pr = books.begin(); pr != books.end(); pr++)
 				ShowReview(*pr);
-			// Вставка одного элемента
+			// Р’СЃС‚Р°РІРєР° РѕРґРЅРѕРіРѕ СЌР»РµРјРµРЅС‚Р°
 			books.insert(books.begin(), oldlist.begin() + 1, oldlist.begin() + 2);
-			cout << "После вставки(insert):\n";
+			cout << "РџРѕСЃР»Рµ РІСЃС‚Р°РІРєРё(insert):\n";
 			for (pr = books.begin(); pr != books.end(); pr++)
 				ShowReview(*pr);
 		}
 		books.swap(oldlist);
-		cout << "Обмен эелементами oldlist и books:\n";
+		cout << "РћР±РјРµРЅ СЌРµР»РµРјРµРЅС‚Р°РјРё oldlist Рё books:\n";
 		for (pr = books.begin(); pr != books.end(); pr++)
 			ShowReview(*pr);
 	}
 	else
-		cout << "Вы ничего не ввели!\n";*/
+		cout << "Р’С‹ РЅРёС‡РµРіРѕ РЅРµ РІРІРµР»Рё!\n";*/
 
 	//16.9
 	/*vector<Review> books;
@@ -346,39 +346,39 @@ int main()
 		books.push_back(temp);
 	if (books.size() > 0)
 	{
-		cout << "Вы ввели "<< books.size() <<" рейтинга:\n";
-		cout << "\nРейтинг\tКнига:\n";
+		cout << "Р’С‹ РІРІРµР»Рё "<< books.size() <<" СЂРµР№С‚РёРЅРіР°:\n";
+		cout << "\nР РµР№С‚РёРЅРі\tРљРЅРёРіР°:\n";
 		std::for_each(books.begin(), books.end(), ShowReview);
 		std::sort(books.begin(), books.end());
-		cout << "Сортировка по названию:\n";
-		cout << "\nРейтинг\tКнига:\n";
+		cout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ РЅР°Р·РІР°РЅРёСЋ:\n";
+		cout << "\nР РµР№С‚РёРЅРі\tРљРЅРёРіР°:\n";
 		std::for_each(books.begin(), books.end(), ShowReview);
 		std::sort(books.begin(), books.end(), worseThan);
-		cout << "Сортировка по рейтингу:\n";
+		cout << "РЎРѕСЂС‚РёСЂРѕРІРєР° РїРѕ СЂРµР№С‚РёРЅРіСѓ:\n";
 		std::for_each(books.begin(), books.end(), ShowReview);
 		std::random_shuffle(books.begin(), books.end());
-		cout << "После случайной сортировка:\n";
+		cout << "РџРѕСЃР»Рµ СЃР»СѓС‡Р°Р№РЅРѕР№ СЃРѕСЂС‚РёСЂРѕРІРєР°:\n";
 		std::for_each(books.begin(), books.end(), ShowReview);
 	}
 	else
-		cout << "Вы ничего не ввели!\n";*/
+		cout << "Р’С‹ РЅРёС‡РµРіРѕ РЅРµ РІРІРµР»Рё!\n";*/
 
 	//16.10
 	/*int casts[10] = { 6, 1, 2, 9, 4, 11, 8, 1, 10, 5 };
 	vector<int> dice(10);
-	// Копирование из массива в вектор
+	// РљРѕРїРёСЂРѕРІР°РЅРёРµ РёР· РјР°СЃСЃРёРІР° РІ РІРµРєС‚РѕСЂ
 	std::copy(casts, casts + 10, dice.begin());
-	cout << "Заполняем dice:\n";
-	// Создание итератора ostream
+	cout << "Р—Р°РїРѕР»РЅСЏРµРј dice:\n";
+	// РЎРѕР·РґР°РЅРёРµ РёС‚РµСЂР°С‚РѕСЂР° ostream
 	std::ostream_iterator<int, char> out_iter(cout, " ");
 	std::copy(dice.begin(), dice.end(), out_iter);
 	cout << endl;
 
-	cout << "Неявное использование обратного итератора:\n";
+	cout << "РќРµСЏРІРЅРѕРµ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РѕР±СЂР°С‚РЅРѕРіРѕ РёС‚РµСЂР°С‚РѕСЂР°:\n";
 	std::copy(dice.rbegin(), dice.rend(), out_iter);
 	cout << endl;
 
-	cout << "Явное использование обратного итератора:\n";
+	cout << "РЇРІРЅРѕРµ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РѕР±СЂР°С‚РЅРѕРіРѕ РёС‚РµСЂР°С‚РѕСЂР°:\n";
 	vector<int>::reverse_iterator ri;
 	for (ri = dice.rbegin(); ri != dice.rend(); ri++)
 		cout << *ri << " ";*/
@@ -392,12 +392,12 @@ int main()
 	std::for_each(words.begin(), words.end(), output);
 	cout << endl;
 
-	// Конструирование анонимного объекта типа back_insert_iterator
+	// РљРѕРЅСЃС‚СЂСѓРёСЂРѕРІР°РЅРёРµ Р°РЅРѕРЅРёРјРЅРѕРіРѕ РѕР±СЉРµРєС‚Р° С‚РёРїР° back_insert_iterator
 	copy(s2, s2 + 2, std::back_insert_iterator<vector<string> >(words));
 	std::for_each(words.begin(), words.end(), output);
 	cout << endl;
 
-	// Конструирование анонимного объекта типа insert_iterator
+	// РљРѕРЅСЃС‚СЂСѓРёСЂРѕРІР°РЅРёРµ Р°РЅРѕРЅРёРјРЅРѕРіРѕ РѕР±СЉРµРєС‚Р° С‚РёРїР° insert_iterator
 	copy(s3, s3 + 2, std::insert_iterator<vector<string> >(words, words.begin()));
 	std::for_each(words.begin(), words.end(), output);
 	cout << endl;*/
@@ -410,27 +410,27 @@ int main()
 	int more[6] = { 6, 4, 2, 4, 6, 5 };
 	list<int> three(two);
 	three.insert(three.end(), more, more + 6);
-	cout << "Первый список: ";
+	cout << "РџРµСЂРІС‹Р№ СЃРїРёСЃРѕРє: ";
 	std::for_each(one.begin(), one.end(), outint);
-	cout << "\nВторой список: ";
+	cout << "\nР’С‚РѕСЂРѕР№ СЃРїРёСЃРѕРє: ";
 	std::for_each(two.begin(), two.end(), outint);
-	cout << "\nТретий список: ";
+	cout << "\nРўСЂРµС‚РёР№ СЃРїРёСЃРѕРє: ";
 	std::for_each(three.begin(), three.end(), outint);
 	three.remove(2);
-	cout << "\nТретий список минус все цифры 2: ";
+	cout << "\nРўСЂРµС‚РёР№ СЃРїРёСЃРѕРє РјРёРЅСѓСЃ РІСЃРµ С†РёС„СЂС‹ 2: ";
 	std::for_each(three.begin(), three.end(), outint);
 	three.splice(three.begin(), one);
-	cout << "\nТретий список после splice(): ";
+	cout << "\nРўСЂРµС‚РёР№ СЃРїРёСЃРѕРє РїРѕСЃР»Рµ splice(): ";
 	std::for_each(three.begin(), three.end(), outint);
-	cout << "\nПервый список  после splice(): ";
+	cout << "\nРџРµСЂРІС‹Р№ СЃРїРёСЃРѕРє  РїРѕСЃР»Рµ splice(): ";
 	std::for_each(one.begin(), one.end(), outint);
 	three.sort();
 	three.unique();
-	cout << "\nТретий список sort() и unique(): ";
+	cout << "\nРўСЂРµС‚РёР№ СЃРїРёСЃРѕРє sort() Рё unique(): ";
 	std::for_each(three.begin(), three.end(), outint);
 	two.sort();
 	three.merge(two);
-	cout << "\nCлияние отсортированного второго списка с третьим: ";
+	cout << "\nCР»РёСЏРЅРёРµ РѕС‚СЃРѕСЂС‚РёСЂРѕРІР°РЅРЅРѕРіРѕ РІС‚РѕСЂРѕРіРѕ СЃРїРёСЃРєР° СЃ С‚СЂРµС‚СЊРёРј: ";
 	std::for_each(three.begin(), three.end(), outint);
 	cout << endl;*/
 
@@ -442,34 +442,34 @@ int main()
 	set<string> B(s2, s2 + N);
 	std::ostream_iterator<string, char> out(cout, " ");
 	
-	cout << "Set (набор) A:\n";
+	cout << "Set (РЅР°Р±РѕСЂ) A:\n";
 	copy(A.begin(), A.end(), out);
 	
-	cout << "\nSet (набор) A:\n";
+	cout << "\nSet (РЅР°Р±РѕСЂ) A:\n";
 	for (auto x : B) cout << x << " ";
 	
-	cout << "\nОбъединение А и В:\n";
+	cout << "\nРћР±СЉРµРґРёРЅРµРЅРёРµ Рђ Рё Р’:\n";
 	std::set_union(A.begin(), A.end(), B.begin(), B.end(), out);
 
-	cout << "\nПересечение А и В:\n";
+	cout << "\nРџРµСЂРµСЃРµС‡РµРЅРёРµ Рђ Рё Р’:\n";
 	std::set_intersection(A.begin(), A.end(), B.begin(), B.end(), out);
 
-	cout << "\nРазность А и В:\n";
+	cout << "\nР Р°Р·РЅРѕСЃС‚СЊ Рђ Рё Р’:\n";
 	std::set_difference(A.begin(), A.end(), B.begin(), B.end(), out);
 	cout << endl;
 
 	set<string> C;
 	std::set_union(A.begin(), A.end(), B.begin(), B.end(), std::insert_iterator<set<string> >(C, C.begin()));
-	cout << "Set (набор) C:\n";
+	cout << "Set (РЅР°Р±РѕСЂ) C:\n";
 	copy(C.begin(), C.end(), out);
 	cout << endl;
 
 	string s3("grungy");
 	C.insert(s3);
-	cout << "Набор С после вставки строки:\n";
+	cout << "РќР°Р±РѕСЂ РЎ РїРѕСЃР»Рµ РІСЃС‚Р°РІРєРё СЃС‚СЂРѕРєРё:\n";
 	copy(C.begin(), C.end(), out);
 
-	cout << "\nВывод диапазона:\n";
+	cout << "\nР’С‹РІРѕРґ РґРёР°РїР°Р·РѕРЅР°:\n";
 	copy(C.lower_bound("ghost"), C.upper_bound("spook"), out);
 	cout << endl;*/
 
@@ -479,7 +479,7 @@ int main()
 	//typedef std::pair<const KeyType, string> Pair;
 	//typedef std::multimap<KeyType, string> MapCode;
 
-	MapCode codes;	//тоже самое что    std::multimap<int, string> codes;
+	MapCode codes;	//С‚РѕР¶Рµ СЃР°РјРѕРµ С‡С‚Рѕ    std::multimap<int, string> codes;
 	codes.insert(std::pair<const int, string>(415, "San Francisco"));
 	codes.insert(Pair(510, "Ookland"));
 	codes.insert(Pair(718, "Brooklyn")); 
@@ -487,17 +487,17 @@ int main()
 	codes.insert(Pair(415, "San Rafael"));
 	codes.insert(std::pair<const int, string>(510, "Berkeley"));
 	
-	cout << "Количество городов с кодом региона 415:\n" << codes.count(415) << endl;
-	cout << "Количество городов с кодом региона 718:\n" << codes.count(718) << endl;
-	cout << "Количество городов с кодом региона 510:\n" << codes.count(510) << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РіРѕСЂРѕРґРѕРІ СЃ РєРѕРґРѕРј СЂРµРіРёРѕРЅР° 415:\n" << codes.count(415) << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РіРѕСЂРѕРґРѕРІ СЃ РєРѕРґРѕРј СЂРµРіРёРѕРЅР° 718:\n" << codes.count(718) << endl;
+	cout << "РљРѕР»РёС‡РµСЃС‚РІРѕ РіРѕСЂРѕРґРѕРІ СЃ РєРѕРґРѕРј СЂРµРіРёРѕРЅР° 510:\n" << codes.count(510) << endl;
 
-	cout << "Код региона | Город:\n";
-	MapCode::iterator ir;	// тоже самое что  std::multimap<int, string>::iterator ir;
+	cout << "РљРѕРґ СЂРµРіРёРѕРЅР° | Р“РѕСЂРѕРґ:\n";
+	MapCode::iterator ir;	// С‚РѕР¶Рµ СЃР°РјРѕРµ С‡С‚Рѕ  std::multimap<int, string>::iterator ir;
 	for (ir = codes.begin(); ir != codes.end(); ir++)
 		cout << " " << (*ir).first << "\t\t" << (*ir).second << endl;
 
 	std::pair<std::multimap<int, string>::iterator, std::multimap<int, string>::iterator> range = codes.equal_range(718);
-	cout << "Города с кодом региона 718:\n";
+	cout << "Р“РѕСЂРѕРґР° СЃ РєРѕРґРѕРј СЂРµРіРёРѕРЅР° 718:\n";
 	for (ir = range.first; ir != range.second; ir++)
 		cout << (*ir).second << endl;
 	*/
@@ -507,21 +507,21 @@ int main()
 	int  vals[10] = { 50,10,90,180,60,210,415,88,188,201 };
 	list<int> yadayada(vals, vals + 10);
 	list<int> etceters{ 50,10,90,180,60,210,415,88,188,201 };
-	cout << "Первоначальный лист:\n";
+	cout << "РџРµСЂРІРѕРЅР°С‡Р°Р»СЊРЅС‹Р№ Р»РёСЃС‚:\n";
 	std::for_each(yadayada.begin(), yadayada.end(), outint);
 	cout << endl;
 	std::for_each(etceters.begin(), etceters.end(), outint);
 	cout << endl;
-	yadayada.remove_if(f100); //использование именованного функционального объекта
-	etceters.remove_if(ToBig<int>(200)); //конструирование функционального объекта
+	yadayada.remove_if(f100); //РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РёРјРµРЅРѕРІР°РЅРЅРѕРіРѕ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕРіРѕ РѕР±СЉРµРєС‚Р°
+	etceters.remove_if(ToBig<int>(200)); //РєРѕРЅСЃС‚СЂСѓРёСЂРѕРІР°РЅРёРµ С„СѓРЅРєС†РёРѕРЅР°Р»СЊРЅРѕРіРѕ РѕР±СЉРµРєС‚Р°
 
-	cout << "Усеченные списки:\n";
+	cout << "РЈСЃРµС‡РµРЅРЅС‹Рµ СЃРїРёСЃРєРё:\n";
 	std::for_each(yadayada.begin(), yadayada.end(), outint);
 	cout << endl;
 	std::for_each(etceters.begin(), etceters.end(), outint);
 	cout << endl;*/
 
-	//16.16 - fundap.cpp — использование адаптеров функций
+	//16.16 - fundap.cpp вЂ” РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Р°РґР°РїС‚РµСЂРѕРІ С„СѓРЅРєС†РёР№
 	/*double arr1[LIM] = { 28, 29, 30, 35, 38, 59 };
 	double arr2[LIM] = { 28, 29, 30, 35, 38, 59 };
 	vector<double> gr8(arr1, arr1 + LIM);
@@ -551,76 +551,76 @@ int main()
 	std::for_each(prod.begin(), prod.end(), Show);
 	cout << endl;*/
 
-	//16.17 - strgstl.cpp -- применение STL к строке
+	//16.17 - strgstl.cpp -- РїСЂРёРјРµРЅРµРЅРёРµ STL Рє СЃС‚СЂРѕРєРµ
 	/*string letters;
-	cout << "Введите группу букв <quit для выхода>: ";
+	cout << "Р’РІРµРґРёС‚Рµ РіСЂСѓРїРїСѓ Р±СѓРєРІ <quit РґР»СЏ РІС‹С…РѕРґР°>: ";
 	while (cin >> letters && letters != "quit")
 	{
-		cout << "Перестановка группы букв " << letters << endl;
+		cout << "РџРµСЂРµСЃС‚Р°РЅРѕРІРєР° РіСЂСѓРїРїС‹ Р±СѓРєРІ " << letters << endl;
 		std::sort(letters.begin(), letters.end());
 		cout << letters << endl;
 		while (std::next_permutation(letters.begin(), letters.end()))
 			cout << letters << endl;
-		cout << "Введите следующую группу букв <quit для выхода>: ";
+		cout << "Р’РІРµРґРёС‚Рµ СЃР»РµРґСѓСЋС‰СѓСЋ РіСЂСѓРїРїСѓ Р±СѓРєРІ <quit РґР»СЏ РІС‹С…РѕРґР°>: ";
 	}*/
 
-	//16.18 - strgstl.cpp -- применение STL к строке
+	//16.18 - strgstl.cpp -- РїСЂРёРјРµРЅРµРЅРёРµ STL Рє СЃС‚СЂРѕРєРµ
 	/*int ar[LIM] = { 4, 5, 4, 2, 2, 3, 4, 8, 1, 4 };
 	list<int> la(ar, ar + LIM);
 	list<int> lb(la);
 
-	cout << "Вывод содержимого исходного списка:\n";
+	cout << "Р’С‹РІРѕРґ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РёСЃС…РѕРґРЅРѕРіРѕ СЃРїРёСЃРєР°:\n";
 	std::for_each(la.begin(), la.end(), Show);
 	cout << endl;
 	la.remove(4);
 	
-	cout << "Список после использования метода remove ():\n";
+	cout << "РЎРїРёСЃРѕРє РїРѕСЃР»Рµ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РјРµС‚РѕРґР° remove ():\n";
 	std::for_each(la.begin(), la.end(), Show);
 	cout << endl;
 	
 	list<int>::iterator last;
 	last = std::remove(lb.begin(), lb.end(), 4);
 	
-	cout << "Список после использования функции remove ():\n";
+	cout << "РЎРїРёСЃРѕРє РїРѕСЃР»Рµ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ С„СѓРЅРєС†РёРё remove ():\n";
 	std::for_each(lb.begin(), lb.end(), Show);
 	cout << endl;
 
 	lb.erase(last, lb.end());
-	cout << "Список после использования метода erase():\n";
+	cout << "РЎРїРёСЃРѕРє РїРѕСЃР»Рµ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ РјРµС‚РѕРґР° erase():\n";
 	std::for_each(lb.begin(), lb.end(), Show);
 	cout << endl;*/
 
-	//16.19 - usealgo.срр -- использование нескольких элементов STL
-	vector<string> words;
+	//16.19 - usealgo.СЃСЂСЂ -- РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ РЅРµСЃРєРѕР»СЊРєРёС… СЌР»РµРјРµРЅС‚РѕРІ STL
+	/*vector<string> words;
 	
-	cout << "Введите слова (quit для выхода): ";
+	cout << "Р’РІРµРґРёС‚Рµ СЃР»РѕРІР° (quit РґР»СЏ РІС‹С…РѕРґР°): ";
 	
 	string input;
 	while (cin >> input && input != "quit")
 		words.push_back(input);
 	
-	cout << "Вы ввели следующие слова:\n";
+	cout << "Р’С‹ РІРІРµР»Рё СЃР»РµРґСѓСЋС‰РёРµ СЃР»РѕРІР°:\n";
 	std::for_each(words.begin(), words.end(), display);
 	cout << endl;
 
-	// Помещение слов в набор с преобразование букв в строчные
+	// РџРѕРјРµС‰РµРЅРёРµ СЃР»РѕРІ РІ РЅР°Р±РѕСЂ СЃ РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Р±СѓРєРІ РІ СЃС‚СЂРѕС‡РЅС‹Рµ
 	set<string> wordset;
 	std::transform(words.begin(), words.end(), std::insert_iterator<set<string> >(wordset, wordset.begin()), ToLower);
 	
-	cout << "Введенные слова в алфавитном порядке:\n";
+	cout << "Р’РІРµРґРµРЅРЅС‹Рµ СЃР»РѕРІР° РІ Р°Р»С„Р°РІРёС‚РЅРѕРј РїРѕСЂСЏРґРєРµ:\n";
 	std::for_each(wordset.begin(), wordset.end(), display);
 	cout << endl;
 
-	// Помещение и частоты его помещения в карту
+	// РџРѕРјРµС‰РµРЅРёРµ Рё С‡Р°СЃС‚РѕС‚С‹ РµРіРѕ РїРѕРјРµС‰РµРЅРёСЏ РІ РєР°СЂС‚Сѓ
 	map<string, int> wordmap;
 	set<string>::iterator si;
 	for (si = wordset.begin(); si != wordset.end(); si++)
 		wordmap[*si] = std::count(words.begin(), words.end(), *si);
 
-	// Отображение содержимого карты
-	cout << "Частота появления слов:\n";
+	// РћС‚РѕР±СЂР°Р¶РµРЅРёРµ СЃРѕРґРµСЂР¶РёРјРѕРіРѕ РєР°СЂС‚С‹
+	cout << "Р§Р°СЃС‚РѕС‚Р° РїРѕСЏРІР»РµРЅРёСЏ СЃР»РѕРІ:\n";
 	for (si = wordset.begin(); si != wordset.end(); si++)
-		cout << *si << ": " << wordmap[*si] << endl;
+		cout << *si << ": " << wordmap[*si] << endl;*/
 
 	return 0;
 }
@@ -628,11 +628,11 @@ int main()
 //16.8-9
 /*bool FillReview(Review & r)
 {
-	cout << "Введите название книги <quit> для выхода: ";
+	cout << "Р’РІРµРґРёС‚Рµ РЅР°Р·РІР°РЅРёРµ РєРЅРёРіРё <quit> РґР»СЏ РІС‹С…РѕРґР°: ";
 	std::getline(cin, r.title);
 	if (r.title == "quit")
 		return false;
-	cout << "Введите ее рейтинг: ";
+	cout << "Р’РІРµРґРёС‚Рµ РµРµ СЂРµР№С‚РёРЅРі: ";
 	cin >> r.rating;
 	if (!cin)
 		return false;
