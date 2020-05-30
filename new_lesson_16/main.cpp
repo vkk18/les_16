@@ -13,6 +13,7 @@
 #include <set>
 #include <map>
 #include <functional>
+#include <valarray>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -21,7 +22,7 @@ using std::vector;
 using std::list;
 using std::set;
 using std::map;
-
+using std::valarray;
 //16.3
 /*const int NUM = 26;
 const string wordlist[NUM] = { "apiary", "beetle", "cereal",
@@ -94,7 +95,7 @@ const int LIM = 6;*/
 const int LIM = 10;*/
 
 //16.19 - usealgo.срр -- использование нескольких элементов STL
-char toLower(char ch) { return std::tolower(ch); }
+/*char toLower(char ch) { return std::tolower(ch); }
 string & ToLower(string & s)
 {
 	std::transform(s.begin(), s.end(), s.begin(), toLower);
@@ -103,7 +104,9 @@ string & ToLower(string & s)
 void display(const string & s)
 {
 	cout << s << ' ';
-}
+}*/
+
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -622,6 +625,33 @@ int main()
 	for (si = wordset.begin(); si != wordset.end(); si++)
 		cout << *si << ": " << wordmap[*si] << endl;*/
 
+	//16.20
+	vector<double> data;
+	double temp;
+
+	cout << "Введите числа(<=0 для выхода):\n";
+	while (cin >> temp && temp > 0)
+		data.push_back(temp);
+
+	sort(data.begin(), data.end());
+	int size = data.size();
+	valarray<double> numbers(size);
+	int i;
+	for (i = 0; i < size; i++)
+		numbers[i] = data[i];
+	valarray<double> sq_res(size);
+	sq_res = sqrt(numbers);
+	valarray<double> results(size);
+	results = numbers + 2.0 * sq_res;
+	cout.setf(std::ios_base::fixed);
+	cout.precision(4);
+	for (i = 0; i < size; i++)
+	{
+		cout.width(8);
+		cout << numbers[i] << ": ";
+		cout.width(8);
+		cout << results[i] << endl;
+	}
 	return 0;
 }
 
