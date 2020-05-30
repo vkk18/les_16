@@ -14,6 +14,7 @@
 #include <map>
 #include <functional>
 #include <valarray>
+#include <initializer_list>
 using std::cin;
 using std::cout;
 using std::endl;
@@ -107,7 +108,7 @@ void display(const string & s)
 }*/
 
 //16.21
-const int N = 12;
+/*const int N = 12;
 void show(const valarray<int> & v, int cols)
 {
 	int lim = v.size();
@@ -122,6 +123,30 @@ void show(const valarray<int> & v, int cols)
 	}
 	if (lim % cols != 0)
 		cout << endl;
+}*/
+
+//16.22 - ilist.cpp — использование initializer_list (средство С++11)
+double sum(std::initializer_list<double> li)
+{
+	double s = 0;
+	std::initializer_list<double>::iterator ili;
+	for (ili = li.begin(); ili != li.end(); ili++)
+		s += *ili;
+	return s;
+}
+double aver(std::initializer_list<double> rli)
+{
+	double s = 0;
+	int n = rli.size();
+	double av = 0.0;
+	if (n > 0)
+	{
+		for (auto ili = rli.begin(); ili != rli.end(); ili++)
+			s += *ili;
+		av = s / n;
+	}
+	return av;
+	
 }
 int main()
 {
@@ -670,7 +695,7 @@ int main()
 	}*/
 
 	//16.21
-	std::srand(time(NULL));
+	/*std::srand(time(NULL));
 	valarray<int> valint(N);
 	for (int i = 0; i < N; i++)
 		valint[i] = std::rand() % 10;
@@ -693,7 +718,18 @@ int main()
 	cout << "Установка первого столбца в сумму двух остальных:\n";
 	valint[std::slice(0, 4, 3)] = valarray<int>(valint[std::slice(1, 4, 3)]) + valarray<int>(valint[std::slice(2, 4, 3)]);
 
-	show(valint, 3);
+	show(valint, 3);*/
+
+	//16.22 - ilist.cpp — использование initializer_list (средство С++11)
+	cout << "Список 1: сумма = " << sum({ 2,3,4 }) << ", среднее = " << aver({ 2,3,4 }) << endl;
+
+	std::initializer_list<double> dl = { 1.1, 2.2, 3.3, 4.4, 5.5 };
+	
+	cout << "Список 2: сумма = " << sum(dl) << ", среднее = " << aver(dl) << endl;
+
+	dl = { 16.0, 25.0, 36.0, 40.0, 64.0 };
+
+	cout << "Список 3: сумма = " << sum(dl) << ", среднее = " << aver(dl) << endl;
 	return 0;
 }
 
