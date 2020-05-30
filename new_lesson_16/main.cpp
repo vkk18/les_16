@@ -106,7 +106,23 @@ void display(const string & s)
 	cout << s << ' ';
 }*/
 
-
+//16.21
+const int N = 12;
+void show(const valarray<int> & v, int cols)
+{
+	int lim = v.size();
+	for (int i = 0; i < lim; i++)
+	{
+		cout.width(3);
+		cout << v[i];
+		if (i % cols == cols - 1)
+			cout << endl;
+		else
+			cout << ' ';
+	}
+	if (lim % cols != 0)
+		cout << endl;
+}
 int main()
 {
 	SetConsoleCP(1251);
@@ -626,7 +642,7 @@ int main()
 		cout << *si << ": " << wordmap[*si] << endl;*/
 
 	//16.20
-	vector<double> data;
+	/*vector<double> data;
 	double temp;
 
 	cout << "Введите числа(<=0 для выхода):\n";
@@ -651,7 +667,33 @@ int main()
 		cout << numbers[i] << ": ";
 		cout.width(8);
 		cout << results[i] << endl;
-	}
+	}*/
+
+	//16.21
+	std::srand(time(NULL));
+	valarray<int> valint(N);
+	for (int i = 0; i < N; i++)
+		valint[i] = std::rand() % 10;
+
+	cout << "Исходный массив\n";
+	show(valint, 3);	// отображение в виде 3 столбцов
+	valarray<int> vcol(valint[std::slice(1, 4, 3)]); // извлечение 2-го столбца
+
+	cout << "Второй столбец:\n";
+	show(vcol, 1); //отображение 2го столбца
+
+	valarray<int> vrow(valint[std::slice(3, 3, 1)]);
+	cout << "Вторая строка:\n";
+	show(vrow, 3);
+
+	valint[std::slice(2, 4, 3)] = 10; 
+	cout << "Присваивание элементам последнего столбца значений 10:\n";
+	show(valint, 3);
+
+	cout << "Установка первого столбца в сумму двух остальных:\n";
+	valint[std::slice(0, 4, 3)] = valarray<int>(valint[std::slice(1, 4, 3)]) + valarray<int>(valint[std::slice(2, 4, 3)]);
+
+	show(valint, 3);
 	return 0;
 }
 
