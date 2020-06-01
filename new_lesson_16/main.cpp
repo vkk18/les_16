@@ -126,7 +126,7 @@ void show(const valarray<int> & v, int cols)
 }*/
 
 //16.22 - ilist.cpp — использование initializer_list (средство С++11)
-double sum(std::initializer_list<double> li)
+/*double sum(std::initializer_list<double> li)
 {
 	double s = 0;
 	std::initializer_list<double>::iterator ili;
@@ -146,7 +146,33 @@ double aver(std::initializer_list<double> rli)
 		av = s / n;
 	}
 	return av;
-	
+}*/
+
+
+//================================ упражнения ================================
+//1-2
+string compress(string& s)
+{
+	string temp;
+	int k = 0;
+	for (int i = 0; i < s.size(); i++)
+		if (std::isalpha(s[i]))
+		{
+			temp.insert(temp.begin() + k, std::tolower(s[i]));
+			k++;
+		}
+	return temp;
+}
+bool palindrom(string& s)
+{
+	for (int i = 0; i < s.size() / 2; i++)
+	{
+		if (s[i] == s[s.size() - 1 - i])
+			continue;
+		else
+			return false;
+	}
+	return true;
 }
 int main()
 {
@@ -721,7 +747,7 @@ int main()
 	show(valint, 3);*/
 
 	//16.22 - ilist.cpp — использование initializer_list (средство С++11)
-	cout << "Список 1: сумма = " << sum({ 2,3,4 }) << ", среднее = " << aver({ 2,3,4 }) << endl;
+	/*cout << "Список 1: сумма = " << sum({ 2,3,4 }) << ", среднее = " << aver({ 2,3,4 }) << endl;
 
 	std::initializer_list<double> dl = { 1.1, 2.2, 3.3, 4.4, 5.5 };
 	
@@ -729,7 +755,26 @@ int main()
 
 	dl = { 16.0, 25.0, 36.0, 40.0, 64.0 };
 
-	cout << "Список 3: сумма = " << sum(dl) << ", среднее = " << aver(dl) << endl;
+	cout << "Список 3: сумма = " << sum(dl) << ", среднее = " << aver(dl) << endl;*/
+
+	//================================ упражнения ================================
+	//3
+	string pal;
+	string comp_s;
+	cout << "Введите строку (quit для выхода): ";
+	std::getline(cin, pal);
+	while (pal != "quit")
+	{
+		comp_s = compress(pal);
+		cout << "Новая строка: " << comp_s << endl;
+		if (palindrom(comp_s))
+			cout << "Строка - палиндром!\n";
+		else
+			cout << "Строка не является палиндромом\n";
+		cout << "Введите строку (quit для выхода): ";
+		std::getline(cin, pal);
+	}
+	
 	return 0;
 }
 
