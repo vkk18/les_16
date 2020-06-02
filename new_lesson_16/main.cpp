@@ -151,7 +151,7 @@ double aver(std::initializer_list<double> rli)
 
 //================================ упражнения ================================
 //1-2
-string compress(string& s)
+/*string compress(string& s)
 {
 	string temp;
 	int k = 0;
@@ -173,7 +173,10 @@ bool palindrom(string& s)
 			return false;
 	}
 	return true;
-}
+}*/
+
+//3
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -758,8 +761,8 @@ int main()
 	cout << "Список 3: сумма = " << sum(dl) << ", среднее = " << aver(dl) << endl;*/
 
 	//================================ упражнения ================================
-	//3
-	string pal;
+	//1-2
+	/*string pal;
 	string comp_s;
 	cout << "Введите строку (quit для выхода): ";
 	std::getline(cin, pal);
@@ -773,8 +776,94 @@ int main()
 			cout << "Строка не является палиндромом\n";
 		cout << "Введите строку (quit для выхода): ";
 		std::getline(cin, pal);
+	}*/
+	
+	//3
+	std::srand(std::time(NULL));
+	vector<string> wordlist;
+	char play;
+	
+	cout << "Хотите поиграть в виселицу? <y/n> ";
+	cin >> play;
+	cin.get();
+
+	play = tolower(play);
+	bool check = false;
+	
+	while (play == 'y')
+	{
+		if (!check)
+		{
+			std::fstream _fromFile;
+			string filename, temp;
+
+			cout << "Введите имя файла: ";
+			std::getline(cin, filename);
+
+			_fromFile.open(filename);
+			if (!_fromFile.is_open())
+			{
+				std::cerr << "Не удается найти файл!\n";
+				exit(EXIT_FAILURE);
+			}
+			while (_fromFile >> temp)
+				wordlist.push_back(temp);
+
+			std::copy(wordlist.begin(), wordlist.end(), std::ostream_iterator<string, char>(cout, " "));
+			cout << "\nКоличество слов: " << wordlist.size() << endl;
+			check = true;
+		}
+		string target = wordlist[std::rand() % wordlist.size()];
+		int lenght = target.length();
+		string attempt(lenght, '-'); // угаданное
+		string badchars; //неверные буквы
+		int guesses = lenght;
+		cout << "Угадайте слово, в нем " << lenght << " букв\nугадываете одну букву за ход, у вас " << guesses << " попыток\n";
+		cout << "Ваше слово: " << attempt << endl;
+		while (attempt != target && guesses > 0)
+		{
+			char letter;
+			cout << "Введите букву: ";
+			cin >> letter;
+			if (badchars.find(letter) != string::npos || attempt.find(letter) != string::npos)
+			{
+				cout << "Вы уже угадывали эту букву! Попробуйте еще раз\n";
+				continue;
+			}
+			int loc = target.find(letter);
+			if (loc == string::npos)
+			{
+				cout << "Неверная буква!\n";
+				guesses--;
+				badchars += letter;
+			}
+			else
+			{
+				cout << "Вы угадали!\n";
+				attempt[loc] = letter;
+				// Проверить, не появляется ли буква еще раз
+				loc = target.find(letter, loc + 1);
+				while (loc != string::npos)
+				{
+					attempt[loc] = letter;
+					loc = target.find(letter, loc + 1);
+				}
+			}
+			cout << "Ваше слово: " << attempt << endl;
+			if (attempt != target && badchars.length() > 0)
+				cout << "Неверные буквы: " << badchars << endl << guesses << " попыток осталось!\n";
+		}
+		if (guesses > 0)
+			cout << "Вы угадали слово!\n";
+		else
+			cout << "Вы проиграли! Загаданное слово: " << target << endl;
+		cout << "Хотите сыграть еще? <y/n> ";
+		cin >> play;
+		play = tolower(play);
 	}
 	
+
+
 	return 0;
 }
 
