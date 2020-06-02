@@ -175,8 +175,14 @@ bool palindrom(string& s)
 	return true;
 }*/
 
-//3
-
+//4-5
+template <typename T>
+int reduce(T* ar, int n)
+{
+	set<T> uni(ar, ar + n);
+	std::copy(uni.begin(), uni.end(), ar);
+	return uni.size();
+}
 int main()
 {
 	SetConsoleCP(1251);
@@ -779,7 +785,7 @@ int main()
 	}*/
 	
 	//3
-	std::srand(std::time(NULL));
+	/*std::srand(std::time(NULL));
 	vector<string> wordlist;
 	char play;
 	
@@ -860,10 +866,25 @@ int main()
 		cout << "Хотите сыграть еще? <y/n> ";
 		cin >> play;
 		play = tolower(play);
-	}
+	}*/
 	
-
-
+	//4-5
+	long test[5] = { 1,6,6,4,3 };
+	string test2[5] = { "mass", "bla", "mass","double", "bla" };
+	cout << "Массивы до применения функции:\n";
+	std::copy(test, test + 5, std::ostream_iterator<long, char>(cout, " "));
+	cout << endl;
+	std::copy(test2, test2 + 5, std::ostream_iterator<string, char>(cout, " "));
+	int N = reduce(test, 5);
+	for (int i = 4; i > N - 1; i--)
+		test[i] = 0;
+	N = reduce(test2, 5);
+	for (int i = 4; i > N - 1; i--)
+		test2[i] = "none";
+	cout << "\nРезультирующие массивы:\n";
+	std::copy(test, test + 5, std::ostream_iterator<long, char>(cout, " "));
+	cout << endl;
+	std::copy(test2, test2 + 5, std::ostream_iterator<string, char>(cout, " "));
 	return 0;
 }
 
