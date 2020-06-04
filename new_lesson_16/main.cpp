@@ -188,10 +188,22 @@ int reduce(T* ar, int n)
 }*/
 
 //6
-const int MIN_PER_HR = 60;
+/*const int MIN_PER_HR = 60;
 bool newcustomer(double x)
 {
 	return (std::rand() * x / RAND_MAX < 1);
+}*/
+
+//7
+vector<int> Lotto(int _numbers, int needs)
+{
+	vector<int> all(_numbers);
+	vector<int> for_us(needs);
+	for (int i = 0; i < _numbers; i++)
+		all[i] = i + 1;
+	std::random_shuffle(all.begin(), all.end());
+	std::copy(all.begin(), all.begin() + needs, for_us.begin());
+	return for_us;
 }
 int main()
 {
@@ -897,8 +909,7 @@ int main()
 	std::copy(test2, test2 + 5, std::ostream_iterator<string, char>(cout, " "));*/
 
 	//6
-	// Подготовка
-	std::srand(std::time(0)); // случайная инициализация rand()
+	/*std::srand(std::time(0)); // случайная инициализация rand()
 	cout << "Case Study: Bank of Heather Automatic Teller\n";
 	queue<Customer> line;
 	cout << "Введите максимальный размер очереди: "; // 
@@ -961,7 +972,18 @@ int main()
 	}
 	else
 		cout << "Клиентов нет!\n";
-	cout << "Done!\n";
+	cout << "Done!\n";*/
+
+	//7
+	std::srand(std::time(NULL));
+	vector<int> winners;
+	int num, rand_num;
+	cout << "Введите количество номеров в карточке лотереи: ";
+	cin >> num;
+	cout << "Введите количество номеров к выбору: ";
+	cin >> rand_num;
+	winners = Lotto(num, rand_num);
+	std::copy(winners.begin(), winners.end(), std::ostream_iterator<int, char>(cout, " "));
 	return 0;
 }
 
