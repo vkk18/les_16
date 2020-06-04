@@ -15,6 +15,9 @@
 #include <functional>
 #include <valarray>
 #include <initializer_list>
+#include <queue>
+#include "customer.h" //6 упражнение
+using std::queue;
 using std::cin;
 using std::cout;
 using std::endl;
@@ -176,12 +179,19 @@ bool palindrom(string& s)
 }*/
 
 //4-5
-template <typename T>
+/*template <typename T>
 int reduce(T* ar, int n)
 {
 	set<T> uni(ar, ar + n);
 	std::copy(uni.begin(), uni.end(), ar);
 	return uni.size();
+}*/
+
+//6
+const int MIN_PER_HR = 60;
+bool newcustomer(double x)
+{
+	return (std::rand() * x / RAND_MAX < 1);
 }
 int main()
 {
@@ -869,7 +879,7 @@ int main()
 	}*/
 	
 	//4-5
-	long test[5] = { 1,6,6,4,3 };
+	/*long test[5] = { 1,6,6,4,3 };
 	string test2[5] = { "mass", "bla", "mass","double", "bla" };
 	cout << "Массивы до применения функции:\n";
 	std::copy(test, test + 5, std::ostream_iterator<long, char>(cout, " "));
@@ -884,7 +894,74 @@ int main()
 	cout << "\nРезультирующие массивы:\n";
 	std::copy(test, test + 5, std::ostream_iterator<long, char>(cout, " "));
 	cout << endl;
-	std::copy(test2, test2 + 5, std::ostream_iterator<string, char>(cout, " "));
+	std::copy(test2, test2 + 5, std::ostream_iterator<string, char>(cout, " "));*/
+
+	//6
+	// Подготовка
+	std::srand(std::time(0)); // случайная инициализация rand()
+	cout << "Case Study: Bank of Heather Automatic Teller\n";
+	queue<Customer> line;
+	cout << "Введите максимальный размер очереди: "; // 
+	int qs; 
+	cin >> qs;
+	cout << "Введите количество эмулируемых часов: "; 
+	int hours; // часы эмуляции
+	cin >> hours;
+	// Эмуляция будет запускать один цикл в минуту
+	long cyclelimit = MIN_PER_HR * hours; // количество циклов
+	cout << "Введите количество клиентов в час: ";
+	double perhour;
+	cin >> perhour;
+	double min_per_cust; // среднее время между появлениями 
+	min_per_cust = MIN_PER_HR / perhour;
+
+	Customer temp; // данные нового клиента
+	long turnaways = 0; // не допущены в полную очередь
+	long customers = 0; // присоединены к очереди
+	long served = 0; // обслужены во время эмуляции
+	long sum_line = 0; // общая длина очереди
+	int wait_time = 0;  // время до освобождения банкомата 
+	long line_wait = 0;	// общее время в очереди
+	
+	for (int cycle = 0; cycle < cyclelimit; cycle++)
+	{
+		if (newcustomer(min_per_cust)) // есть подошедший клиент
+		{
+			if (line.size() == qs)
+				turnaways++;
+			else
+			{
+				customers++;
+				temp.set(cycle); // cycle = время прибытия
+				line.push(temp); // добавление новичка в очередь
+			}
+		}
+		if (wait_time <= 0 && !line.empty())
+		{
+			temp = line.front();
+			line.pop();
+			wait_time = temp.ptime(); 
+			line_wait += cycle - temp.when(); 
+			served++;
+		}
+		if (wait_time > 0) 
+			wait_time--;
+		sum_line += line.size();
+	}
+	if (customers > 0)
+	{
+		cout << "Принято клиентов: " << customers << endl;
+		cout << "Обслужено клиентов: " << served << endl;
+		cout << "Не принято клиентов: " << turnaways << endl; 
+		cout << "Средний размер очереди: "; 
+		cout.precision(2);
+		cout.setf(std::ios_base::fixed, std::ios_base::floatfield); 
+		cout <<(double) sum_line / cyclelimit << endl; 
+		cout << "Среднее время ожидания: " <<(double) line_wait / served << " минут\n";
+	}
+	else
+		cout << "Клиентов нет!\n";
+	cout << "Done!\n";
 	return 0;
 }
 
@@ -918,7 +995,6 @@ bool operator<(const Review & r1, const Review & r2)
 }
 bool worseThan(const Review & r1, const Review & r2)
 {
-	if (r1.rating < r2.rating)
 		return true;
 	else
 		return false;
