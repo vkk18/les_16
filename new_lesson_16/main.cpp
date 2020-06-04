@@ -195,7 +195,7 @@ bool newcustomer(double x)
 }*/
 
 //7
-vector<int> Lotto(int _numbers, int needs)
+/*vector<int> Lotto(int _numbers, int needs)
 {
 	vector<int> all(_numbers);
 	vector<int> for_us(needs);
@@ -204,7 +204,9 @@ vector<int> Lotto(int _numbers, int needs)
 	std::random_shuffle(all.begin(), all.end());
 	std::copy(all.begin(), all.begin() + needs, for_us.begin());
 	return for_us;
-}
+}*/
+
+
 int main()
 {
 	SetConsoleCP(1251);
@@ -975,7 +977,7 @@ int main()
 	cout << "Done!\n";*/
 
 	//7
-	std::srand(std::time(NULL));
+	/*std::srand(std::time(NULL));
 	vector<int> winners;
 	int num, rand_num;
 	cout << "Введите количество номеров в карточке лотереи: ";
@@ -983,7 +985,42 @@ int main()
 	cout << "Введите количество номеров к выбору: ";
 	cin >> rand_num;
 	winners = Lotto(num, rand_num);
-	std::copy(winners.begin(), winners.end(), std::ostream_iterator<int, char>(cout, " "));
+	std::copy(winners.begin(), winners.end(), std::ostream_iterator<int, char>(cout, " "));*/
+
+	//8
+	using std::multiset;
+	multiset<string> matt_friend;
+	multiset<string> patt_friend;
+	cout << "Введите имена друзей Мэтта <quit для завершения>:\n";
+	string temp;
+	int i = 1;
+	
+	cout << i << " >> ";
+	std::getline(cin, temp);
+	while (temp != "quit")
+	{
+		matt_friend.insert(temp);
+		cout << ++i << " >> ";
+		std::getline(cin, temp);
+	}
+		
+	cout << "Введите имена друзей Пэтта <quit для завершения>:\n";
+	i = 1;
+	cout << i << " >> ";
+	std::getline(cin, temp);
+	while (temp != "quit")
+	{
+		patt_friend.insert(temp);
+		cout << ++i << " >> ";
+		std::getline(cin, temp);
+	}
+
+	std::copy(matt_friend.begin(), matt_friend.end(), std::ostream_iterator<string, char>(cout, " "));
+	cout << endl;
+	std::copy(patt_friend.begin(), patt_friend.end(), std::ostream_iterator<string, char>(cout, " "));
+	cout << endl;
+	std::set_union(matt_friend.begin(), matt_friend.end(), patt_friend.begin(), patt_friend.end(), std::ostream_iterator<string, char>(cout, " "));
+	cout << endl;
 	return 0;
 }
 
