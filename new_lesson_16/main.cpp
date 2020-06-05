@@ -206,7 +206,18 @@ bool newcustomer(double x)
 	return for_us;
 }*/
 
-
+//10
+struct Review
+{
+	string title;
+	double price;
+	int rating;
+};
+bool FillReview(Review& r);
+void ShowReview(const Review& r);
+bool operator<(const Review& r1, const Review& r2);
+bool by_cost(const Review& r1, const Review& r2);
+bool by_rating(const Review& r1, const Review& r2);
 int main()
 {
 	SetConsoleCP(1251);
@@ -1023,7 +1034,7 @@ int main()
 	cout << endl;*/
 
 	//9
-	std::srand(std::time(NULL));
+	/*std::srand(std::time(NULL));
 	cout << "Введите размер массива: ";
 	int size;
 	cin >> size;
@@ -1049,7 +1060,32 @@ int main()
 	std::sort(vi0.begin(), vi0.end());
 	std::copy(vi0.begin(), vi0.end(), li.begin());
 	end = clock();
-	cout << "Время, затраченное на сортировку связного списка через копирование в вектор: " << double(end - start) / CLOCKS_PER_SEC << " сек.\n";
+	cout << "Время, затраченное на сортировку связного списка через копирование в вектор: " << double(end - start) / CLOCKS_PER_SEC << " сек.\n";*/
+
+	//10
+	vector<Review> books;
+	Review temp;
+	while (FillReview(temp))
+		books.push_back(temp);
+	if (books.size() > 0)
+	{
+		cout << "Выберите способ отображения перечня книг:\n";
+		cout << "1. В исходном порядке\n"
+			<< "2. В алфавитном порядке\n"
+			<< "3. В порядке возрастания рейтинга\n"
+			<< "4. В порядке возрастания цены\n"
+			<< "5. В порядке уменьшения цены\n"
+			<< "6. Выход из программы\n";
+		int choice;
+		
+
+		while (cin >> choice && choice != 6)
+		{
+			
+		}
+	}
+	else
+		cout << "Нет информации о книгах!\n";
 	return 0;
 }
 
@@ -1087,3 +1123,55 @@ bool worseThan(const Review & r1, const Review & r2)
 	else
 		return false;
 }*/
+
+//================================ упражнения ================================
+//10
+bool FillReview(Review& r)
+{
+	cout << "Введите название книги <quit> для выхода: ";
+	std::getline(cin, r.title);
+	if (r.title == "quit")
+		return false;
+	cout << "Введите ее рейтинг: ";
+	cin >> r.rating;
+	if (!cin)
+		return false;
+	while (cin.get() != '\n')
+		continue;
+	cout << "Введите цену: ";
+	cin >> r.price;
+	if (!cin)
+		return false;
+	while (cin.get() != '\n')
+		continue;
+	return true;
+}
+void ShowReview(const Review& r)
+{
+	cout << r.rating << "\t" << r.title << "\t" << r.price << endl;
+}
+bool operator<(const Review& r1, const Review& r2)
+{
+	if (r1.title < r2.title)
+		return true;
+	else if (r1.title == r2.title && r1.rating < r2.rating)
+		return true;
+	else if (r1.rating == r2.rating && r1.price < r2.price)
+		return true;
+	else
+		return false;
+}
+bool by_rating(const Review& r1, const Review& r2)
+{
+	if (r1.rating < r2.rating)
+		return true;
+	else
+		return false;
+}
+bool by_cost(const Review& r1, const Review& r2)
+{
+	if (r1.price < r2.price)
+		return true;
+	else
+		return false;
+}
