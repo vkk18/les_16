@@ -988,7 +988,7 @@ int main()
 	std::copy(winners.begin(), winners.end(), std::ostream_iterator<int, char>(cout, " "));*/
 
 	//8
-	using std::multiset;
+	/*using std::multiset;
 	multiset<string> matt_friend;
 	multiset<string> patt_friend;
 	cout << "Введите имена друзей Мэтта <quit для завершения>:\n";
@@ -1020,7 +1020,36 @@ int main()
 	std::copy(patt_friend.begin(), patt_friend.end(), std::ostream_iterator<string, char>(cout, " "));
 	cout << endl;
 	std::set_union(matt_friend.begin(), matt_friend.end(), patt_friend.begin(), patt_friend.end(), std::ostream_iterator<string, char>(cout, " "));
-	cout << endl;
+	cout << endl;*/
+
+	//9
+	std::srand(std::time(NULL));
+	cout << "Введите размер массива: ";
+	int size;
+	cin >> size;
+	vector<int> vi0(size);
+	for (int i = 0; i < size; i++)
+		vi0[i] = rand() % 100;
+	vector<int> vi(vi0);
+	list<int> li(size);
+	std::copy(vi0.begin(), vi0.end(), li.begin());
+
+	clock_t start = clock();
+	std::sort(vi.begin(), vi.end());
+	clock_t end = clock();
+	cout << "Время, затраченное на сортировку вектора встроенным методом STL: " << double(end - start) / CLOCKS_PER_SEC << " сек.\n";
+
+	start = clock();
+	li.sort();
+	end = clock();
+	cout << "Время, затраченное на сортировку связного списка встроенным методом: " << double(end - start) / CLOCKS_PER_SEC << " сек.\n";
+
+	start = clock();
+	std::copy(li.begin(), li.end(), vi0.begin());
+	std::sort(vi0.begin(), vi0.end());
+	std::copy(vi0.begin(), vi0.end(), li.begin());
+	end = clock();
+	cout << "Время, затраченное на сортировку связного списка через копирование в вектор: " << double(end - start) / CLOCKS_PER_SEC << " сек.\n";
 	return 0;
 }
 
