@@ -215,9 +215,11 @@ struct Review
 };
 bool FillReview(Review& r);
 void ShowReview(const Review& r);
+void p_ShowReview(std::shared_ptr<Review> p);
 bool operator<(const Review& r1, const Review& r2);
-bool by_cost(const Review& r1, const Review& r2);
-bool by_rating(const Review& r1, const Review& r2);
+bool operator<(const std::shared_ptr<Review> r1, const std::shared_ptr<Review> r2);
+bool by_cost(const std::shared_ptr<Review> r1, const std::shared_ptr<Review> r2);
+bool by_rating(const std::shared_ptr<Review> r1, const std::shared_ptr<Review> r2);
 int main()
 {
 	SetConsoleCP(1251);
@@ -1067,6 +1069,20 @@ int main()
 	Review temp;
 	while (FillReview(temp))
 		books.push_back(temp);
+	vector<std::shared_ptr<Review> > pt_books;
+	vector<std::shared_ptr<Review> > pt_books2;
+	for (int i = 0; i < books.size(); i++)
+	{
+		std::shared_ptr<Review> pt_rev(new Review(books[i]));
+		pt_books.push_back(pt_rev);
+		pt_books2.push_back(pt_rev);
+	}
+	/*std::for_each(books.begin(), books.end(), ShowReview);
+	cout << endl;
+	for (int i = 0; i < pt_books.size(); i++)
+	{
+		cout << pt_books[i]->rating << "\t" << pt_books[i]->title << "\t" << pt_books[i]->price << endl;
+	}*/
 	if (books.size() > 0)
 	{
 		cout << "Выберите способ отображения перечня книг:\n";
@@ -1077,11 +1093,35 @@ int main()
 			<< "5. В порядке уменьшения цены\n"
 			<< "6. Выход из программы\n";
 		int choice;
-		
-
 		while (cin >> choice && choice != 6)
 		{
-			
+			while (cin.get() != '\n')
+				continue;
+			switch (choice)
+			{
+			case 1:
+				std::for_each(pt_books.begin(), pt_books.end(), p_ShowReview);
+				break;
+			case 2:
+				std::sort(pt_books2.begin(), pt_books2.end());
+				std::for_each(pt_books2.begin(), pt_books2.end(), p_ShowReview);
+				break;
+			case 3:
+				std::sort(pt_books2.begin(), pt_books2.end(), by_rating);
+				std::for_each(pt_books2.begin(), pt_books2.end(), p_ShowReview);
+				break;
+			case 4:
+				std::sort(pt_books2.begin(), pt_books2.end(), by_cost);
+				std::for_each(pt_books2.begin(), pt_books2.end(), p_ShowReview);
+				break;
+			case 5:
+				std::sort(pt_books2.begin(), pt_books2.end(), by_cost);
+				std::for_each(pt_books2.rbegin(), pt_books2.rend(), p_ShowReview);
+				break;
+			default:
+				cout << "Выбран неверный пункт меню! Попробуйте еще раз!\n";
+				break;
+			}
 		}
 	}
 	else
@@ -1161,17 +1201,32 @@ bool operator<(const Review& r1, const Review& r2)
 	else
 		return false;
 }
-bool by_rating(const Review& r1, const Review& r2)
+bool operator<(const std::shared_ptr<Review> r1, const std::shared_ptr<Review> r2)
 {
-	if (r1.rating < r2.rating)
+	if (r1->title < r2->title)
+		return true;
+	else if (r1->title == r2->title && r1->rating < r2->rating)
+		return true;
+	else if (r1->rating == r2->rating && r1->price < r2->price)
 		return true;
 	else
 		return false;
 }
-bool by_cost(const Review& r1, const Review& r2)
+bool by_rating(const std::shared_ptr<Review> r1, const std::shared_ptr<Review> r2)
 {
-	if (r1.price < r2.price)
+	if (r1->rating < r2->rating)
 		return true;
 	else
 		return false;
+}
+bool by_cost(const std::shared_ptr<Review> r1, const std::shared_ptr<Review> r2)
+{
+	if (r1->price < r2->price)
+		return true;
+	else
+		return false;
+}
+void p_ShowReview(std::shared_ptr<Review> p)
+{
+	cout << p->rating << "\t" << p->title << "\t" << p->price << endl;
 }
